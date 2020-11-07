@@ -1,0 +1,41 @@
+.nav-wrapper{
+    height: auto;
+}
+
+.nav-wrapper .controller{
+    white-space: nowrap;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+@media(max-width: 769px){
+    .nav-wrapper .controller{
+        width: 100%;
+    }
+}
+
+.content-wrapper{
+    height: 80%;
+}
+
+.wrapper{
+    height: 70%;
+
+    border: 3px solid #003a67ff;
+    border-radius: 5px;
+    background: #ffffff;
+
+    display: flex;
+    align-self: center;
+}
+
+html, body, #root, .row{
+    height: 100%;
+    width: 100%;
+
+    font-family: Raleway, sans-serif;
+}
+
+html, body, #root{
+    background: #dddddd;
+}
