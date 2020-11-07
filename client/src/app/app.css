@@ -1,5 +1,6 @@
 .nav-wrapper{
     height: auto;
+    font-weight: bold;
 }
 
 .nav-wrapper .controller{
@@ -21,7 +22,7 @@
 .wrapper{
     height: 70%;
 
-    border: 3px solid #003a67ff;
+    border: 3px solid #343a40;
     border-radius: 5px;
     background: #ffffff;
 

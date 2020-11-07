@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../mail.css'
 
 class MailGetter extends Component{
     render(){
