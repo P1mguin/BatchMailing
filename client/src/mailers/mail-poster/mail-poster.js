@@ -3,7 +3,6 @@ import Form from 'react-bootstrap/Form';
 import '../mail.css';
 import './mail-poster.css';
 import Button from 'react-bootstrap/Button';
-import $ from 'jquery';
 
 class MailPoster extends Component {
     async postMail() {
@@ -16,7 +15,7 @@ class MailPoster extends Component {
         let content = contentDiv.value;
 
         // Get the variable names
-        let variables = content.match(/(?<=\{)(.*?)(?=\})/g).map(function (v) {
+        let variables = content.match(/(?<={)(.*?)(?=})/g).map(function (v) {
             return v;
         });
         console.log(variables);
@@ -82,6 +81,7 @@ class MailPoster extends Component {
                         <Form.Control
                             type="text"
                             as="textarea"
+                            className="post-textarea"
                             placeholder="Enter mail content"
                         />
                         <Form.Text className="text-muted">
