@@ -13,6 +13,10 @@
     .nav-wrapper .controller{
         width: 100%;
     }
+
+    .wrapper{
+        height: 95% !important;
+    }
 }
 
 .content-wrapper{
