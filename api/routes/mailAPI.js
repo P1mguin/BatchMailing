@@ -13,4 +13,9 @@ router.get("/", function(req, res){
     mail.getTemplates(req, res)
 })
 
+router.post("/send", function(req, res){
+    console.log("Mail send")
+    mail.sendMail(req, res);
+})
+
 module.exports = router;

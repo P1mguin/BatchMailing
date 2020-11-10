@@ -15,9 +15,13 @@ class MailPoster extends Component {
         let content = contentDiv.value;
 
         // Get the variable names
-        let variables = content.match(/(?<={)(.*?)(?=})/g).map(function (v) {
-            return v;
-        });
+        let variables = [];
+        if(content.includes("}")){
+            variables = content.match(/(?<={)(.*?)(?=})/g).map(function (v) {
+                return v;
+            });
+        }
+
         console.log(variables);
 
         let uniqueVariables = [...new Set(variables)];

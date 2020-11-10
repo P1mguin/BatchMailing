@@ -18,3 +18,7 @@ exports.postTemplate = function (req, res) {
         res.json(task)
     })
 }
+
+exports.sendMail = function (req, res) {
+    console.log(req.body);
+}

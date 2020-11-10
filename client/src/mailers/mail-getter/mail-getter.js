@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import '../mail.css';
 import './mail-getter.css';
 import Form from 'react-bootstrap/Form';
@@ -21,7 +21,7 @@ class MailGetter extends Component{
     }
 
     render(){
-        let {templates, chosenTitle} = this.state;
+        let { templates } = this.state;
         let div, titleSelector;
         if(templates.length === 0){
             div = (<p>Loading...</p>)
@@ -39,20 +39,7 @@ class MailGetter extends Component{
                                     </Form.Control>
                                 </div>)
 
-            let index = -1;
-            // Check whether an id is identified
-            if(chosenTitle === "")
-                index = 0;
-
-            // Get the index
-            for(let i in templates){
-                if(templates[i]._id === chosenTitle){
-                    index = i;
-                    break;
-                }
-            }
-
-            let template = templates[index];
+            let template = this.getTemplate()
             let variables = []
             template.variables.forEach((elem)=>{
                 variables.push(<Form.Group as={Col} md="4">
@@ -60,6 +47,7 @@ class MailGetter extends Component{
                         required
                         type="text"
                         id={elem}
+                        className="mail-variable"
                         onChange={() => {this.changeMail()}}
                         placeholder={elem}
                     />
@@ -103,7 +91,7 @@ class MailGetter extends Component{
                     <Form.Group
                         class="send-wrapper"
                         controlId="mailContent"
-                        className="mail-content"
+                        className="mail-wrapper"
                     >
                         <Form.Control
                             type="text"
@@ -118,7 +106,7 @@ class MailGetter extends Component{
                     <Button
                         variant="dark"
                         onClick={() => {
-                            this.postMail();
+                            this.sendMail();
                         }}
                     >
                         Send mail
@@ -167,6 +155,47 @@ class MailGetter extends Component{
             }
         })
         mailDiv.value = mail
+    }
+
+    sendMail(){
+        let variables = document.getElementsByClassName("mail-variable")
+        let mail = {}
+        for(let i in variables){
+            let variable = variables[i];
+            if ('id' in variable){
+                let { id, value } = variable;
+                mail[id] = value;
+            } else {
+                break;
+            }
+        }
+
+        mail = {
+            ...mail,
+            subject: document.getElementById("subject").value,
+            address: document.getElementById("username").value,
+            password: document.getElementById("password").value,
+        }
+
+        console.log(mail);
+    }
+
+    getTemplate(){
+        let { templates, chosenTitle } = this.state
+        let index = -1;
+        // Check whether an id is identified
+        if(chosenTitle === "")
+            index = 0;
+
+        // Get the index
+        for(let i in templates){
+            if(templates[i]._id === chosenTitle){
+                index = i;
+                break;
+            }
+        }
+
+        return templates[index];
     }
 
     async fetchData(){
